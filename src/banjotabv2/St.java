@@ -6,33 +6,38 @@ import banjotabv2.Main.NoteNames;
 
 public class St {
 	
-	private HashMap<Note,Integer> map = new HashMap<Note,Integer>();  
-	Note open;
+	private HashMap<String,Integer> map = new HashMap<String,Integer>();  
 	String stringRep="";
-		
-	public St(Note openGiven) {
-		this.open = openGiven;
-		map.put(openGiven, 0);
-		stringRep= stringRep.concat(this.open.getName()+" ");
+	int octave;
+	NoteNames open;
 
 		
-		//build the rest of the fretboard  
+	public St(NoteNames openGiven, int octaveGiven) {
+		map.put(openGiven+String.valueOf(octaveGiven), 0);
+		stringRep= stringRep.concat(openGiven.toString()+octaveGiven+" ");
+		this.octave=octaveGiven;
+		this.open = openGiven;
+		
+		
+		//build the rest of the fret board  
 		int fret = 1;
-		int currentNoteNum = this.open.getNoteName().ordinal() + 1;   //change? to enum hashmap thing?
-		int currentOctave = this.open.getOctave();
+		int currentNoteNum = openGiven.ordinal() + 1;   //change? to enum hashmap thing?
+		int currentOctave = octaveGiven;
 		
 		while(fret<23) {
 			if(currentNoteNum==12) {
 				currentNoteNum=0;
 				currentOctave++;
 			}
-			Note current = new Note(NoteNames.values()[currentNoteNum],currentOctave);
-			stringRep= stringRep.concat(current.getName()+" ");
+			//Note current = new Note(NoteNames.values()[currentNoteNum],currentOctave);
 			
-			map.put(current, fret);
+			stringRep= stringRep.concat(NoteNames.values()[currentNoteNum]+String.valueOf(currentOctave)+" ");
+			
+			map.put(NoteNames.values()[currentNoteNum]+String.valueOf(currentOctave), fret);
 			fret++;
 			currentNoteNum++;
 		}
+		
 	}
 	
 	
@@ -43,8 +48,15 @@ public class St {
 		System.out.println(stringRep);
 	}
 	
-	public int getFret(Note n) {
-		return map.get(n);
+	public int getFret(String n) throws NullPointerException {
+		
+		int ret = -1;
+		try{
+			ret = map.get(n);
+		}catch(NullPointerException e) {
+			//System.out.printf("%s was not found on this string\n",n);
+		}
+		return ret;
 	}
 	
 

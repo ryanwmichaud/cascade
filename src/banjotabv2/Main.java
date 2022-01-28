@@ -1,5 +1,7 @@
 package banjotabv2;
 
+import java.util.ArrayList;
+
 public class Main {
 	
 	public enum NoteNames{
@@ -8,17 +10,35 @@ public class Main {
 	
 	//public String[] noteList = {"C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"};
 	
-	public static void main(String[] args){ 
-		St firstSt = new St(new Note(NoteNames.D,5));
-		St secondSt = new St(new Note(NoteNames.B,4));
-		St thirdSt = new St(new Note(NoteNames.G,4));
-		St fourthSt = new St(new Note(NoteNames.D,4));
-		firstSt.printSt();
-		secondSt.printSt();
-		thirdSt.printSt();
-		fourthSt.printSt();
+	public static void main(String[] args){
+		ArrayList<St> sts= new ArrayList<St>();
+	
+		St firstSt = new St(NoteNames.D,5);
+		sts.add(firstSt);
+		St secondSt = new St(NoteNames.B,4);
+		sts.add(secondSt);
+		St thirdSt = new St(NoteNames.G,4);
+		sts.add(thirdSt);
+		St fourthSt = new St(NoteNames.D,4);
+		sts.add(fourthSt);		
 		
-		//System.out.printf("%d",firstSt.getFret(new Note(NoteNames.B,5)));
+		for(Integer fret: getChoices(sts,"E5")) {
+			System.out.println(String.valueOf(fret));
+		}
+		
 
+	}
+	
+	public static void printSts(ArrayList<St> sts) {
+		for(St s:sts) {
+			s.printSt();
+		}
+	}
+	public static ArrayList<Integer> getChoices(ArrayList<St> sts,String note) {
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		for(St s:sts) {
+			arr.add(s.getFret(note));
+		}
+		return arr;
 	}
 }
