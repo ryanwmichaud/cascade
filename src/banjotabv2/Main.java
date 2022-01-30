@@ -35,7 +35,7 @@ public class Main {
 		sts.add(fifthSt);
 		sts.add(sixthSt);	
 		
-		
+		printSts(sts);
 		
 		try {
 			Scanner scan = new Scanner(new File(fName));
@@ -95,8 +95,12 @@ public class Main {
 	}
 	
 	public static int choose(ArrayList<Integer> choices) {
-		Random rand = new Random();   
-		return rand.nextInt(4);
+		Random rand = new Random(); 
+		int i = rand.nextInt(6);  
+		while(choices.get(i)==-1) {
+			i = rand.nextInt(6);
+		}
+		return i;
 	}
 	
 	public static void makeChoice(ArrayList<St> sts, ArrayList<Integer> choices, int strChoice) {
