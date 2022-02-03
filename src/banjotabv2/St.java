@@ -9,21 +9,21 @@ public class St {
 	private HashMap<String,Integer> map = new HashMap<String,Integer>();  
 	String stringRep="";
 	int octave;
-	NoteNames open;
+	banjotabv2.Generator.NoteNames open;
 	String tab = "";
 
 		
-	public St(NoteNames openGiven, int octaveGiven) {
-		map.put(openGiven+String.valueOf(octaveGiven), 0);
-		stringRep= stringRep.concat(openGiven.toString()+octaveGiven+" ");
+	public St(banjotabv2.Generator.NoteNames d, int octaveGiven) {
+		map.put(d+String.valueOf(octaveGiven), 0);
+		stringRep= stringRep.concat(d.toString()+octaveGiven+" ");
 		this.octave=octaveGiven;
-		this.open = openGiven;
+		this.open = d;
 		this.tab = this.tab.concat(this.open.toString()+" ");
 		
 		
 		//build the rest of the fret board  
 		int fret = 1;
-		int currentNoteNum = openGiven.ordinal() + 1;   //change? to enum hashmap thing?
+		int currentNoteNum = d.ordinal() + 1;   //change? to enum hashmap thing?
 		int currentOctave = octaveGiven;
 		
 		while(fret<22) {
@@ -67,6 +67,8 @@ public class St {
 	public void choose(int fret) {
 		if(fret>9) {
 			this.tab=this.tab.concat(String.valueOf(fret)+"-");
+		}else if(fret==-1){
+			this.tab=this.tab.concat("X--");
 		}else {
 			this.tab=this.tab.concat(String.valueOf(fret)+"--");
 		}
