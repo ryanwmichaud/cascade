@@ -1,5 +1,5 @@
 package banjotabv2;
-
+/*
 import banjotabv2.Main.NoteNames;
 
 public class Note {
@@ -24,4 +24,4 @@ public class Note {
 		return octave;
 	}
 }
-
+*/
