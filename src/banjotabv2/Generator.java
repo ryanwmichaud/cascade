@@ -1,15 +1,13 @@
 package banjotabv2;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Generator {
 	
 	int prevFret;
-	int prevSt ;
+	int prevSt;
 	
 	public enum NoteNames{
 		C,Db,D,Eb,E,F,Gb,G,Ab,A,Bb,B
@@ -20,64 +18,6 @@ public class Generator {
 		prevFret=0;
 	}
 	
-	
-		
-	public static void main(String[] args){
-		
-		Generator gen =new Generator();
-			
-		String fName=args[0];
-		ArrayList<St> sts= new ArrayList<St>();
-		
-		St firstSt = new St(NoteNames.D,5);
-		St secondSt = new St(NoteNames.B,4);
-		St thirdSt = new St(NoteNames.G,4);
-		St fourthSt = new St(NoteNames.D,4);
-		FifthSt fifthSt = new FifthSt(NoteNames.G,5,true);
-	
-		
-		sts.add(firstSt);
-		sts.add(secondSt);
-		sts.add(thirdSt);
-		sts.add(fourthSt);	
-		sts.add(fifthSt);
-
-		
-		printSts(sts);
-		
-		try {
-			Scanner scan = new Scanner(new File(fName));
-			int count=0;
-			while (scan.hasNext()) {
-				String currentNote=scan.next();	//next note
-				//System.out.println("got "+currentNote+"\n");
-				ArrayList<Integer> choices = getChoices(sts,currentNote);
-				int stChoice = gen.choose(choices,gen.prevSt,gen.prevFret);
-				makeChoice( sts, choices, stChoice);
-				
-				count++;
-				if(count%(8)==0) {
-					addBarline(sts);
-				}
-				if(count%30==0) {
-					printTab(sts);
-					System.out.println("\n");
-				}
-			}
-			printTab(sts);
-			System.out.println("\n");
-			
-			
-			
-		}
-			catch(FileNotFoundException e){
-				System.out.println("File Not Found");
-			}
-		
-		
-	}
-		
-	
 	/*
 		for(Integer fret: getChoices(sts,"E5")) {
 			System.out.println(String.valueOf(fret));
@@ -85,25 +25,24 @@ public class Generator {
 	*/
 		
 	
-	
-	public static void printSts(ArrayList<St> sts) {
+	public void printSts(ArrayList<St> sts) {
 		for(St s:sts) {
 			s.printSt();
 		}
 		System.out.println("\n");
 	}
-	public static void printTab(ArrayList<St> sts) {
+	public void printTab(ArrayList<St> sts) {
 		for(St s:sts) {
 			s.printStTab();
 		}
 	}
-	public static void addBarline(ArrayList<St> sts) {
+	public void addBarline(ArrayList<St> sts) {
 		for(St s:sts) {
 			s.barline();
 		}
 	}
 	
-	public static ArrayList<Integer> getChoices(ArrayList<St> sts,String note) {
+	public ArrayList<Integer> getChoices(ArrayList<St> sts,String note) {
 		ArrayList<Integer> arr = new ArrayList<Integer>();
 		for(St s:sts) {
 			arr.add(s.getFret(note));
@@ -150,7 +89,7 @@ public class Generator {
 
 	}
 	
-	public static void makeChoice(ArrayList<St> sts, ArrayList<Integer> choices, int strChoice) {
+	public void makeChoice(ArrayList<St> sts, ArrayList<Integer> choices, int strChoice) {
 		int i = 0;
 		for(St s:sts) {
 			//*****************************
