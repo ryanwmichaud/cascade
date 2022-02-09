@@ -74,6 +74,13 @@ public class St {
 		}
 		return ret;
 	}
+	public void rest() {
+		this.tab=this.tab.concat("X--");
+	}
+	public void delete() {
+		this.tab=this.tab.substring(0,this.tab.length()-3);
+	}
+	
 	public void choose(int fret) {
 		if(fret>9) { //check if single digit
 			this.tab=this.tab.concat(String.valueOf(fret)+"-");
