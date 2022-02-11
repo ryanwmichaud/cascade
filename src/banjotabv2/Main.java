@@ -3,7 +3,6 @@ package banjotabv2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -24,7 +23,7 @@ public class Main {
 		St secondSt = new St(NoteNames.B,4);
 		St thirdSt = new St(NoteNames.G,4);
 		St fourthSt = new St(NoteNames.D,4);
-		FifthSt fifthSt = new FifthSt(NoteNames.G,5,true);
+		St fifthSt = new St(NoteNames.G,5,7);
 		sts.add(firstSt);
 		sts.add(secondSt);
 		sts.add(thirdSt);
@@ -50,12 +49,12 @@ public class Main {
 					if(jump<0) {
 						jump*=-1;
 					}
-					if(jump<5||sts.get(stChoice).getFret(currentNoteName)==0||gen.prevFret==0) {
+					if(jump<5||sts.get(stChoice).getFret(currentNoteName)==0||gen.prevFret==0||gen.prevFret==-1) {
 			
 						doNextBest( gen, currentNote, sts, choices);  //use what we've decided was best in the note
 					}else {
 						Note n = noteIt.previous();
-						System.out.println(n.getName()+" is impossible");
+						System.out.println(n.getName()+" is impossible bc choices are "+choices+" from "+gen.prevFret);
 						n = noteIt.previous();
 						System.out.println(n.getName()+" is the problem. were gonna change it");
 

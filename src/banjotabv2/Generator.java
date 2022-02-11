@@ -2,7 +2,6 @@ package banjotabv2;
 
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 
 
 public class Generator {
@@ -53,10 +52,10 @@ public class Generator {
 	
 	public ArrayList<Integer> rank(ArrayList<Integer> choices,int prevSt,int prevFret) {
 		ArrayList<Integer> rankings= new ArrayList<Integer>();
-		int pass=1;
+		//int pass=1;
 		for(int s=0;s<5;s++) { //as many passes as strings
 			//System.out.println("pass no. "+pass);
-			pass++;
+			//pass++;
 			int choice = -100;
 			int iClosest = -100;
 			int smallestDist = 100;

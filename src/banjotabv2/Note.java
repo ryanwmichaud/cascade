@@ -1,10 +1,8 @@
 package banjotabv2;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
-import java.util.PriorityQueue;
 
 public class Note {
 	String name;

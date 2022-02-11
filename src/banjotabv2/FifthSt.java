@@ -1,10 +1,10 @@
 package banjotabv2;
-
+/*
 import banjotabv2.Generator.NoteNames;
 
 public class FifthSt extends St {
 
-	public FifthSt(NoteNames d, int octaveGiven, boolean fifth) {
+	public FifthSt(NoteNames d, int octaveGiven, int fifth) {
 		super(d, octaveGiven, fifth);
 		stringRep= stringRep.concat("                 ");	
 		buildFretBoard();
@@ -12,6 +12,7 @@ public class FifthSt extends St {
 	
 	
 	private void buildFretBoard()  {
+		
 		//build the rest of the fret board  
 		int fret = 1;
 		int currentNoteNum = this.open.ordinal()+1 ;   //change? to enum hashmap thing?
@@ -37,3 +38,4 @@ public class FifthSt extends St {
 	}
 
 }
+*/
